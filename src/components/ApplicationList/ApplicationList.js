@@ -1,48 +1,24 @@
-const sampleData = [
-	{
-		company: "Google",
-		open: true,
-	},
-	{
-		company: "HP",
-		open: true,
-	},
-	{
-		company: "Amazon",
-		open: true,
-	},
-	{
-		company: "Dell",
-		open: false,
-	},
-	{
-		company: "Asus",
-		open: false,
-	},
-	{
-		company: "Apple",
-		open: false,
-	},
-];
-
+import { Link } from "react-router-dom";
 const ApplicationList = (props) => (
-	<div>
+	<div className="applicationList">
 		<h3>Open Applications</h3>
-		{sampleData.map((data, idx) => {
+		{props.applications.map((data, idx) => {
 			if (data.open) {
 				return (
 					<ul>
-						<li key={idx}>{data.company}</li>
+						<Link to={`/application/${data._id}`}>{data.companyName}</Link>
 					</ul>
 				);
 			}
 		})}
 		<h3>Closed Applications</h3>
-		{sampleData.map((data, idx) => {
+		{props.applications.map((data, idx) => {
 			if (!data.open) {
 				return (
 					<ul>
-						<li key={idx}>{data.company}</li>
+						<li key={idx}>
+							<Link to={`/application/${data._id}`}>{data.companyName}</Link>
+						</li>
 					</ul>
 				);
 			}
