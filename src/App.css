@@ -8,6 +8,11 @@
 	font-size: calc(10px + 2vmin);
 	color: white;
 }
+.content {
+	display: flex;
+	background-color: lightgray;
+	justify-content: space-between;
+}
 .applicationList {
 	display: flex;
 	flex-direction: column;
@@ -17,4 +22,14 @@
 ul > li {
 	list-style: none;
 	display: flex;
+}
+.appForm {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	width: 60vw;
+}
+.appForm > form {
+	display: flex;
+	flex-direction: column;
 }

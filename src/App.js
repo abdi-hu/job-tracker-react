@@ -20,14 +20,16 @@ function App() {
 	return (
 		<div className="App">
 			<Header />
-			<ApplicationList applications={state} />
-			<Switch>
-				<Route exact path="/" render={() => <HomePage />} />
-				<Route
-					path="/application/:id"
-					render={() => <ApplicationPage applications={state} />}
-				/>
-			</Switch>
+			<div className="content">
+				<ApplicationList applications={state} />
+				<Switch>
+					<Route exact path="/" render={() => <HomePage />} />
+					<Route
+						path="/application/:id"
+						render={() => <ApplicationPage applications={state} />}
+					/>
+				</Switch>
+			</div>
 		</div>
 	);
 }
