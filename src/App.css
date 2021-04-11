@@ -33,3 +33,11 @@ ul > li {
 	display: flex;
 	flex-direction: column;
 }
+.open-jobs {
+	display: flex;
+	flex-direction: column;
+}
+.closed-jobs {
+	display: flex;
+	flex-direction: column;
+}

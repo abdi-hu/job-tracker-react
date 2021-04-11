@@ -2,13 +2,14 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import ApplicationList from "./components/ApplicationList/ApplicationList";
-import { getAppData } from "./services/jobs";
 import HomePage from "./pages/HomePage/HopePage";
 import ApplicationPage from "./pages/ApplicationPage/ApplicationPage";
 import { Route, Switch } from "react-router-dom";
+import { auth } from "./services/firebase";
 
 function App() {
 	const [state, setState] = useState({
+		user: null,
 		jobs: [],
 		newJob: {
 			companyName: "",
@@ -23,25 +24,47 @@ function App() {
 		},
 	});
 	async function getJobs() {
-		const jobs = await getAppData();
-		setState((prevState) => ({
-			...prevState,
-			jobs,
-		}));
+		if (!state.user) return;
+		try {
+			const jobs = await fetch(
+				`http://localhost:3001/api/jobs?uid=${state.user.uid}`
+			).then((res) => res.json());
+			setState((prevState) => ({
+				...prevState,
+				jobs,
+			}));
+		} catch (error) {
+			console.log(error);
+		}
 	}
 	useEffect(() => {
 		getJobs();
-	}, []);
+
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				setState((prevState) => ({
+					...prevState,
+					user,
+				}));
+			} else {
+				setState((prevState) => ({
+					...prevState,
+					skills: [],
+					user,
+				}));
+			}
+		});
+	}, [state.user]);
 	async function addJob(e) {
+		if (!state.user) return;
 		e.preventDefault();
-		console.log(state.newJob);
 
 		const job = await fetch("http://localhost:3001/api/jobs", {
 			method: "POST",
-			header: {
+			headers: {
 				"Content-type": "Application/json",
 			},
-			body: JSON.stringify({ newJob: state.newJob }),
+			body: JSON.stringify({ ...state.newJob, uid: state.user.uid }),
 		}).then((res) => res.json());
 
 		setState((prevState) => ({
@@ -71,7 +94,7 @@ function App() {
 	}
 	return (
 		<div className="App">
-			<Header />
+			<Header user={state.user} />
 			<div className="content">
 				<ApplicationList applications={state.jobs} />
 				<Switch>

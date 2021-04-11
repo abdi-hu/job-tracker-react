@@ -1,3 +1,5 @@
+import { login, logout } from "../../services/firebase";
+
 const Header = (props) => (
 	<nav class="navbar" role="navigation" aria-label="main navigation">
 		<div class="navbar-brand">Home Link</div>
@@ -8,12 +10,15 @@ const Header = (props) => (
 		</div>
 		<div class="navbar-end">
 			<div className="navbar-item">
-				<div className="button">
-					<a href="">Login</a>
-				</div>
-				<div className="button">
-					<a href="">Logout</a>
-				</div>
+				{props.user ? (
+					<div className="button" onClick={logout}>
+						<p>logout</p>
+					</div>
+				) : (
+					<div className="button" onClick={login}>
+						<p>login</p>
+					</div>
+				)}
 			</div>
 		</div>
 	</nav>
