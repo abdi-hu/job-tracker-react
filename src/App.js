@@ -49,7 +49,7 @@ function App() {
 			} else {
 				setState((prevState) => ({
 					...prevState,
-					skills: [],
+					jobs: [],
 					user,
 				}));
 			}
@@ -92,6 +92,7 @@ function App() {
 			},
 		}));
 	}
+
 	return (
 		<div className="App">
 			<Header user={state.user} />
@@ -106,6 +107,7 @@ function App() {
 								handleChange={handleChange}
 								application={state.newJob}
 								addJob={addJob}
+								user={state.user}
 							/>
 						)}
 					/>
