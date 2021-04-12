@@ -23,6 +23,18 @@ ul > li {
 	list-style: none;
 	display: flex;
 }
+.app-links {
+	text-align: center;
+	border: 1px solid black;
+	padding: 5px 0;
+	box-shadow: 1px 1px 2px 2px #808080;
+	text-decoration: none;
+	color: crimson;
+	border-radius: 10px;
+}
+.app-links:hover {
+	background-color: blanchedalmond;
+}
 .appForm {
 	display: flex;
 	flex-direction: column;

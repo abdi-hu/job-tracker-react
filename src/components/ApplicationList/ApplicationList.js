@@ -6,7 +6,11 @@ const ApplicationList = (props) => (
 			{props.applications.map((data, idx) => {
 				if (data.open) {
 					return (
-						<Link key={idx} to={`/application/${data._id}`}>
+						<Link
+							className="app-links"
+							key={idx}
+							to={`/application/${data._id}`}
+						>
 							{`${data.dateApplied} ${data.companyName}`}
 						</Link>
 					);
@@ -19,7 +23,11 @@ const ApplicationList = (props) => (
 			{props.applications.map((data, idx) => {
 				if (!data.open) {
 					return (
-						<Link key={idx} to={`/application/${data._id}`}>
+						<Link
+							className="app-links"
+							key={idx}
+							to={`/application/${data._id}`}
+						>
 							{`${data.dateApplied} ${data.companyName}`}
 						</Link>
 					);
