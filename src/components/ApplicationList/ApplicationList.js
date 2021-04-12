@@ -1,27 +1,13 @@
 import { Link } from "react-router-dom";
-const ApplicationList = (props) => (
-	<div className="applicationList">
-		<h3>Open Applications</h3>
-		<div className="open-jobs">
-			{props.applications.map((data, idx) => {
-				if (data.open) {
-					return (
-						<Link
-							className="app-links"
-							key={idx}
-							to={`/application/${data._id}`}
-						>
-							{`${data.dateApplied} ${data.companyName}`}
-						</Link>
-					);
-				}
-			})}
-		</div>
+const ApplicationList = ({ applications }) => {
+	const closedApps = applications.filter((closed) => closed.open === false);
+	const openApps = applications.filter((closed) => closed.open === true);
 
-		<h3>Closed Applications</h3>
-		<div className="open-jobs">
-			{props.applications.map((data, idx) => {
-				if (!data.open) {
+	return (
+		<div className="applicationList">
+			<h3>Open Applications</h3>
+			<div className="open-jobs">
+				{openApps.map((data, idx) => {
 					return (
 						<Link
 							className="app-links"
@@ -31,10 +17,25 @@ const ApplicationList = (props) => (
 							{`${data.dateApplied} ${data.companyName}`}
 						</Link>
 					);
-				}
-			})}
+				})}
+			</div>
+
+			<h3>Closed Applications</h3>
+			<div className="open-jobs">
+				{closedApps.map((data, idx) => {
+					return (
+						<Link
+							className="app-links"
+							key={idx}
+							to={`/application/${data._id}`}
+						>
+							{`${data.dateApplied} ${data.companyName}`}
+						</Link>
+					);
+				})}
+			</div>
 		</div>
-	</div>
-);
+	);
+};
 
 export default ApplicationList;

@@ -23,21 +23,21 @@ function App() {
 			open: true,
 		},
 	});
-	async function getJobs() {
-		if (!state.user) return;
-		try {
-			const jobs = await fetch(
-				`http://localhost:3001/api/jobs?uid=${state.user.uid}`
-			).then((res) => res.json());
-			setState((prevState) => ({
-				...prevState,
-				jobs,
-			}));
-		} catch (error) {
-			console.log(error);
-		}
-	}
 	useEffect(() => {
+		async function getJobs() {
+			if (!state.user) return;
+			try {
+				const jobs = await fetch(
+					`http://localhost:3001/api/jobs?uid=${state.user.uid}`
+				).then((res) => res.json());
+				setState((prevState) => ({
+					...prevState,
+					jobs,
+				}));
+			} catch (error) {
+				console.log(error);
+			}
+		}
 		getJobs();
 
 		auth.onAuthStateChanged((user) => {

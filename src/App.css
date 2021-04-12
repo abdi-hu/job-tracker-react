@@ -11,19 +11,17 @@
 .content {
 	display: flex;
 	background-color: lightgray;
-	justify-content: space-between;
 }
 .applicationList {
 	display: flex;
 	flex-direction: column;
 	border: 2px solid black;
-	width: 30vw;
+	width: 40vw;
 }
-ul > li {
+
+.app-links {
 	list-style: none;
 	display: flex;
-}
-.app-links {
 	text-align: center;
 	border: 1px solid black;
 	padding: 5px 0;

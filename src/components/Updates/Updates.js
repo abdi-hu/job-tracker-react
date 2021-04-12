@@ -1,11 +1,10 @@
-const Updates = (props) => (
-	<div>
-		<form>
-			<label>
-				Update:
-				<textarea name="" id="" cols="30" rows="5"></textarea>
-			</label>
-		</form>
+const Updates = ({ updates }) => (
+	<div className="updates">
+		<ul>
+			{updates?.map((update) => (
+				<li>{update}</li>
+			))}
+		</ul>
 	</div>
 );
 export default Updates;

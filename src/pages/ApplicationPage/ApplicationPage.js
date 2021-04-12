@@ -6,7 +6,6 @@ const ApplicationPage = ({ applications }) => {
 	const { id } = useParams();
 	const application = applications.filter((job) => job._id === id)[0];
 	const [textArea, setTextArea] = useState("");
-	const [closeButton, setCloseButton] = useState(false);
 
 	async function changeStatus() {
 		const _id = id;
@@ -15,7 +14,7 @@ const ApplicationPage = ({ applications }) => {
 			headers: {
 				"Content-type": "Application/json",
 			},
-			body: JSON.stringify({ open: closeButton }),
+			body: JSON.stringify({ open: false }),
 		});
 	}
 
@@ -32,6 +31,7 @@ const ApplicationPage = ({ applications }) => {
 			},
 			body: JSON.stringify({ updates: newUpdate }),
 		});
+		setTextArea("");
 	}
 	function handleUpdates(e) {
 		setTextArea(e.target.value);
@@ -48,6 +48,7 @@ const ApplicationPage = ({ applications }) => {
 						Close Application
 					</button>
 				)}
+				<Updates updates={application?.updates} />
 				<form onSubmit={addUpdate}>
 					<textarea
 						name="updates"
