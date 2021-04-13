@@ -16,6 +16,7 @@ const ApplicationPage = ({ applications }) => {
 			},
 			body: JSON.stringify({ open: false }),
 		});
+		window.location.reload();
 	}
 
 	async function addUpdate(e) {
@@ -32,6 +33,7 @@ const ApplicationPage = ({ applications }) => {
 			body: JSON.stringify({ updates: newUpdate }),
 		});
 		setTextArea("");
+		window.location.reload();
 	}
 	function handleUpdates(e) {
 		setTextArea(e.target.value);

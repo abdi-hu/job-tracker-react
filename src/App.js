@@ -55,6 +55,7 @@ function App() {
 			}
 		});
 	}, [state.user]);
+
 	async function addJob(e) {
 		if (!state.user) return;
 		e.preventDefault();
@@ -82,6 +83,7 @@ function App() {
 				open: true,
 			},
 		}));
+		window.location.reload();
 	}
 	function handleChange(e) {
 		setState((prevState) => ({

@@ -1,8 +1,8 @@
 const Updates = ({ updates }) => (
 	<div className="updates">
 		<ul>
-			{updates?.map((update) => (
-				<li>{update}</li>
+			{updates?.map((update, idx) => (
+				<li key={idx}>{update}</li>
 			))}
 		</ul>
 	</div>
