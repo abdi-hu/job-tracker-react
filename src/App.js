@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HopePage";
 import ApplicationPage from "./pages/ApplicationPage/ApplicationPage";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./services/firebase";
+import { fetchJobs, createJob } from "./services/api-service";
 
 function App() {
 	const [state, setState] = useState({
@@ -27,9 +28,7 @@ function App() {
 		async function getJobs() {
 			if (!state.user) return;
 			try {
-				const jobs = await fetch(
-					`http://localhost:3001/api/jobs?uid=${state.user.uid}`
-				).then((res) => res.json());
+				const jobs = await fetchJobs(state.user.uid);
 				setState((prevState) => ({
 					...prevState,
 					jobs,
@@ -40,7 +39,7 @@ function App() {
 		}
 		getJobs();
 
-		auth.onAuthStateChanged((user) => {
+		const cancelSubscription = auth.onAuthStateChanged((user) => {
 			if (user) {
 				setState((prevState) => ({
 					...prevState,
@@ -54,19 +53,18 @@ function App() {
 				}));
 			}
 		});
+
+		return function () {
+			//cleanup function
+			cancelSubscription();
+		};
 	}, [state.user]);
 
 	async function addJob(e) {
 		if (!state.user) return;
 		e.preventDefault();
 
-		const job = await fetch("http://localhost:3001/api/jobs", {
-			method: "POST",
-			headers: {
-				"Content-type": "Application/json",
-			},
-			body: JSON.stringify({ ...state.newJob, uid: state.user.uid }),
-		}).then((res) => res.json());
+		const job = await createJob(state.newJob, state.user.uid);
 
 		setState((prevState) => ({
 			...prevState,
