@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import Updates from "../../components/Updates/Updates";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const ApplicationPage = ({ applications }) => {
 	const { id } = useParams();
@@ -39,28 +42,47 @@ const ApplicationPage = ({ applications }) => {
 	}
 	return (
 		<div>
-			<div>
-				<p>Company: {application?.companyName}</p>
-				<p>Title: {application?.title}</p>
-				<p>Site Applied: {application?.siteApplied}</p>
-				<p>Email: {application?.email}</p>
-				{application?.open && (
-					<button onClick={changeStatus} name="open">
-						Close Application
-					</button>
-				)}
-				<Updates updates={application?.updates} />
-				<form onSubmit={addUpdate}>
-					<textarea
-						name="updates"
+			<Button onClick={changeStatus} name="open" className="btn-danger">
+				Close Application
+			</Button>
+			<Card style={{ width: "30rem" }}>
+				<Card.Body>
+					<Card.Title>{application?.companyName}</Card.Title>
+					<Card.Subtitle className="mb-2 text-muted">
+						{`${application?.title} ${application?.location}`}
+					</Card.Subtitle>
+					<Card.Subtitle className="mb-2 text-muted">
+						{new Date(application?.dateApplied).toDateString()}
+					</Card.Subtitle>
+					<Card.Text>{application?.description}</Card.Text>
+					<Card.Text>Email: {application?.email}</Card.Text>
+					<Card.Link href={`${application?.siteApplied}`}>
+						Application Link
+					</Card.Link>
+				</Card.Body>
+			</Card>
+			<Card style={{ width: "30rem" }}>
+				<Card.Header>Updates:</Card.Header>
+				<ListGroup variant="flush">
+					{application?.updates.map((update, idx) => (
+						<ListGroup.Item key={idx}>{update}</ListGroup.Item>
+					))}
+				</ListGroup>
+			</Card>
+			<Form onSubmit={addUpdate}>
+				<Form.Group controlId="exampleForm.ControlTextarea1">
+					<Form.Label>Updates:</Form.Label>
+					<Form.Control
+						as="textarea"
+						rows={2}
 						value={textArea}
-						cols="30"
-						rows="5"
 						onChange={handleUpdates}
-					></textarea>
-					<input type="submit" value="Submit" className="btn btn-primary" />
-				</form>
-			</div>
+					/>
+				</Form.Group>
+				<Button variant="primary" type="submit">
+					Submit
+				</Button>
+			</Form>
 		</div>
 	);
 };

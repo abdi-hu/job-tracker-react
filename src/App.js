@@ -7,6 +7,7 @@ import ApplicationPage from "./pages/ApplicationPage/ApplicationPage";
 import { Route, Switch } from "react-router-dom";
 import { auth } from "./services/firebase";
 import { fetchJobs, createJob } from "./services/api-service";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	const [state, setState] = useState({
@@ -63,7 +64,7 @@ function App() {
 	async function addJob(e) {
 		if (!state.user) return;
 		e.preventDefault();
-
+		console.log(state);
 		const job = await createJob(state.newJob, state.user.uid);
 
 		setState((prevState) => ({
@@ -81,7 +82,6 @@ function App() {
 				open: true,
 			},
 		}));
-		window.location.reload();
 	}
 	function handleChange(e) {
 		setState((prevState) => ({
@@ -117,6 +117,7 @@ function App() {
 					/>
 				</Switch>
 			</div>
+			<Footer />
 		</div>
 	);
 }

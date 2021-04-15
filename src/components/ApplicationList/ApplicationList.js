@@ -18,21 +18,19 @@ const ApplicationList = ({ applications }) => {
 				Open Applications
 			</Button>
 			<Collapse in={open}>
-				<div id="open-apps">
-					<div className="open-jobs">
-						{openApps.map((data, idx) => {
-							return (
-								<Link
-									className="app-links"
-									key={idx}
-									to={`/application/${data._id}`}
-								>
-									<div>{`${new Date(data.dateApplied).toDateString()} `}</div>
-									<div>{`${data.companyName}: ${data.title}`}</div>
-								</Link>
-							);
-						})}
-					</div>
+				<div id="open-apps" className="open-jobs">
+					{openApps.map((data, idx) => {
+						return (
+							<Link
+								className="app-links"
+								key={idx}
+								to={`/application/${data._id}`}
+							>
+								<div>{`${new Date(data.dateApplied).toDateString()} `}</div>
+								<div>{`${data.companyName}: ${data.title}`}</div>
+							</Link>
+						);
+					})}
 				</div>
 			</Collapse>
 			<Button
@@ -44,21 +42,19 @@ const ApplicationList = ({ applications }) => {
 				Closed Applications
 			</Button>
 			<Collapse in={closed}>
-				<div id="closed-apps">
-					<div className="open-jobs">
-						{closedApps.map((data, idx) => {
-							return (
-								<Link
-									className="app-links"
-									key={idx}
-									to={`/application/${data._id}`}
-								>
-									<div>{`${new Date(data.dateApplied).toDateString()} `}</div>
-									<div>{`${data.companyName}: ${data.title}`}</div>
-								</Link>
-							);
-						})}
-					</div>
+				<div id="closed-apps" className="open-jobs">
+					{closedApps.map((data, idx) => {
+						return (
+							<Link
+								className="app-links"
+								key={idx}
+								to={`/application/${data._id}`}
+							>
+								<div>{`${new Date(data.dateApplied).toDateString()} `}</div>
+								<div>{`${data.companyName}: ${data.title}`}</div>
+							</Link>
+						);
+					})}
 				</div>
 			</Collapse>
 		</div>
