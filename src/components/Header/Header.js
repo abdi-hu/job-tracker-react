@@ -1,29 +1,37 @@
 import { login, logout } from "../../services/firebase";
-import { Link } from "react-router-dom";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 
 const Header = (props) => (
-	<nav className="navbar" role="navigation" aria-label="main navigation">
-		<div className="navbar-brand">
-			<Link to="/">Home Link</Link>
-		</div>
-		<div className="navbar-menu">
-			<div className="navbar-item">
-				<h1>Application Tracker</h1>
-			</div>
-		</div>
-		<div className="navbar-end">
-			<div className="navbar-item">
-				{props.user ? (
-					<div className="button" onClick={logout}>
-						<p>logout</p>
-					</div>
-				) : (
-					<div className="button" onClick={login}>
-						<p>login</p>
-					</div>
-				)}
-			</div>
-		</div>
-	</nav>
+	<>
+		<Navbar
+			bg="dark"
+			variant="dark"
+			className="nav justify-content-space-around sticky-top"
+		>
+			<Nav className="container-fluid">
+				<Navbar.Brand href="/">
+					<img
+						src="/hand-shake.png"
+						width="40"
+						height="40"
+						className="d-inline-block align-top"
+						alt="React Bootstrap logo"
+					/>
+				</Navbar.Brand>
+
+				<Nav.Item>
+					<Nav.Link href="/">Application Tracker</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					{props.user ? (
+						<Nav.Link onClick={logout}>Logout</Nav.Link>
+					) : (
+						<Nav.Link onClick={login}>Login</Nav.Link>
+					)}
+				</Nav.Item>
+			</Nav>
+		</Navbar>
+	</>
 );
 export default Header;

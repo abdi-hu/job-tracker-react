@@ -9,7 +9,7 @@ const ApplicationPage = ({ applications }) => {
 
 	async function changeStatus() {
 		const _id = id;
-		await fetch(`http://localhost:3001/api/jobs/${_id}`, {
+		await fetch(`https://job-tracker-react.herokuapp.com/api/jobs/${_id}`, {
 			method: "PUT",
 			headers: {
 				"Content-type": "Application/json",
@@ -23,9 +23,8 @@ const ApplicationPage = ({ applications }) => {
 		e.preventDefault();
 		const _id = id;
 		const newUpdate = [...application.updates, textArea];
-		console.log(textArea);
 
-		await fetch(`http://localhost:3001/api/jobs/${_id}`, {
+		await fetch(`https://job-tracker-react.herokuapp.com/api/jobs/${_id}`, {
 			method: "POST",
 			headers: {
 				"Content-type": "Application/json",
@@ -59,7 +58,7 @@ const ApplicationPage = ({ applications }) => {
 						rows="5"
 						onChange={handleUpdates}
 					></textarea>
-					<input type="submit" value="Submit" />
+					<input type="submit" value="Submit" className="btn btn-primary" />
 				</form>
 			</div>
 		</div>

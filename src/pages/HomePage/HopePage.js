@@ -2,14 +2,14 @@ const HomePage = ({ handleChange, application, addJob, user }) => {
 	return (
 		<>
 			{user && (
-				<div className="appForm">
+				<div className="appForm ">
 					<h1>Application Form</h1>
-					<form onSubmit={addJob} className="mb-3">
+					<form onSubmit={addJob}>
 						<label className="form-label">
 							Company Name:
 							<input
 								type="text"
-								className="form-control"
+								className="form-control form-control-sm col-sm-10"
 								name="companyName"
 								value={application.companyName}
 								onChange={handleChange}
@@ -20,7 +20,7 @@ const HomePage = ({ handleChange, application, addJob, user }) => {
 							Title:
 							<input
 								type="text"
-								className="form-control"
+								className="form-control form-control-sm col-sm-10"
 								name="title"
 								value={application.title}
 								onChange={handleChange}
@@ -31,7 +31,7 @@ const HomePage = ({ handleChange, application, addJob, user }) => {
 							Date Applied:
 							<input
 								type="date"
-								className="form-control"
+								className="form-control form-control-sm col-sm-10"
 								name="dateApplied"
 								value={application.dateApplied}
 								onChange={handleChange}
@@ -42,7 +42,7 @@ const HomePage = ({ handleChange, application, addJob, user }) => {
 							Location:
 							<input
 								type="text"
-								className="form-control"
+								className="form-control form-control-sm col-sm-10"
 								name="location"
 								value={application.location}
 								onChange={handleChange}
@@ -50,22 +50,10 @@ const HomePage = ({ handleChange, application, addJob, user }) => {
 						</label>
 
 						<label className="form-label">
-							Description:
-							<textarea
-								className="form-control"
-								name="description"
-								value={application.description}
-								onChange={handleChange}
-								cols="30"
-								rows="10"
-							></textarea>
-						</label>
-
-						<label className="form-label">
 							Site Applied:
 							<input
 								type="text"
-								className="form-control"
+								className="form-control form-control-sm col-sm-10"
 								name="siteApplied"
 								value={application.siteApplied}
 								onChange={handleChange}
@@ -76,14 +64,31 @@ const HomePage = ({ handleChange, application, addJob, user }) => {
 							email
 							<input
 								type="text"
-								className="form-control"
+								className="form-control form-control-sm col-sm-10"
 								name="email"
 								value={application.email}
 								onChange={handleChange}
 							/>
 						</label>
 
-						<button>ADD</button>
+						<label className="form-label">
+							Description:
+							<textarea
+								className="form-control form-control-sm col-sm-10"
+								name="description"
+								value={application.description}
+								onChange={handleChange}
+								cols="50"
+								rows="5"
+							></textarea>
+						</label>
+
+						<button
+							type="submit"
+							className="btn btn-primary form-control-sm w-25"
+						>
+							ADD
+						</button>
 					</form>
 				</div>
 			)}
