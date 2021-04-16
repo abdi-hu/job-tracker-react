@@ -25,7 +25,11 @@ const Header = (props) => (
 				</Nav.Item>
 				<Nav.Item>
 					{props.user ? (
-						<Nav.Link onClick={logout}>Logout</Nav.Link>
+						<div className="user-details">
+							<p>Welcome, {props.user.displayName}</p>
+							<img src={props.user.photoURL} alt={props.user.displayName} />
+							<Nav.Link onClick={logout}>Logout</Nav.Link>
+						</div>
 					) : (
 						<Nav.Link onClick={login}>Login</Nav.Link>
 					)}
