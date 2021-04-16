@@ -64,7 +64,7 @@ function App() {
 	async function addJob(e) {
 		if (!state.user) return;
 		e.preventDefault();
-		console.log(state);
+
 		const job = await createJob(state.newJob, state.user.uid);
 
 		setState((prevState) => ({
@@ -82,6 +82,7 @@ function App() {
 				open: true,
 			},
 		}));
+		window.location.reload();
 	}
 	function handleChange(e) {
 		setState((prevState) => ({
