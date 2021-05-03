@@ -41,11 +41,11 @@ const ApplicationPage = ({ applications }) => {
 		setTextArea(e.target.value);
 	}
 	return (
-		<div>
+		<div className="content details">
 			<Button onClick={changeStatus} name="open" className="btn-danger">
 				Close Application
 			</Button>
-			<Card style={{ width: "30rem" }}>
+			<Card>
 				<Card.Body>
 					<Card.Title>{application?.companyName}</Card.Title>
 					<Card.Subtitle className="mb-2 text-muted">
@@ -61,7 +61,7 @@ const ApplicationPage = ({ applications }) => {
 					</Card.Link>
 				</Card.Body>
 			</Card>
-			<Card style={{ width: "30rem" }}>
+			<Card>
 				<Card.Header>Updates:</Card.Header>
 				<ListGroup variant="flush">
 					{application?.updates.map((update, idx) => (

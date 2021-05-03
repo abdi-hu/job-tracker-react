@@ -2,7 +2,7 @@ import github from "./github.png";
 import linkedin from "./linkedin.png";
 const Footer = (props) => (
 	<footer>
-		<p>&copy; Created by Abdi Hussein</p>
+		<p>&copy;</p>
 
 		<a href="https://github.com/abdi-hu/job-tracker-react">
 			<img src={github} width="30" height="30" alt="Github Logo" />

@@ -5,8 +5,8 @@ import { Button, Collapse } from "react-bootstrap";
 const ApplicationList = ({ applications }) => {
 	const closedApps = applications.filter((closed) => closed?.open === false);
 	const openApps = applications.filter((closed) => closed?.open === true);
-	const [open, setOpen] = useState(false);
-	const [closed, setClosed] = useState(false);
+	const [open, setOpen] = useState(true);
+	const [closed, setClosed] = useState(true);
 	return (
 		<div className="applicationList">
 			<Button

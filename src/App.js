@@ -97,27 +97,27 @@ function App() {
 	return (
 		<div className="App">
 			<Header user={state.user} />
-			<div className="content">
-				<ApplicationList applications={state.jobs} />
-				<Switch>
-					<Route
-						exact
-						path="/"
-						render={() => (
-							<HomePage
-								handleChange={handleChange}
-								application={state.newJob}
-								addJob={addJob}
-								user={state.user}
-							/>
-						)}
-					/>
-					<Route
-						path="/application/:id"
-						render={() => <ApplicationPage applications={state.jobs} />}
-					/>
-				</Switch>
-			</div>
+			{state.user && <ApplicationList applications={state.jobs} />}
+
+			<Switch>
+				<Route
+					exact
+					path="/"
+					render={() => (
+						<HomePage
+							handleChange={handleChange}
+							application={state.newJob}
+							addJob={addJob}
+							user={state.user}
+						/>
+					)}
+				/>
+				<Route
+					path="/application/:id"
+					render={() => <ApplicationPage applications={state.jobs} />}
+				/>
+			</Switch>
+
 			<Footer />
 		</div>
 	);
